@@ -11,7 +11,11 @@ public interface MentorDao {
 
     List<Mentor> getAll();
 
-    void update(int id, AssistantTM assistantTM);
+     Mentor findById(int id);
+
+    void update(int id, Mentor mentor);
 
     void deleteById(int id);
+
+
 }

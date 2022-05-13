@@ -7,7 +7,7 @@ import java.util.List;
 public class ResponseArray {
     private int status;
     private String message;
-    private List<Mentor> data;
+    private List<Object> data;
 
     public ResponseArray(int status, String message) {
         this.status = status;
@@ -30,11 +30,11 @@ public class ResponseArray {
         this.message = message;
     }
 
-    public List<Mentor> getData() {
+    public List<Object> getData() {
         return data;
     }
 
-    public void setData(List<Mentor> data) {
+    public void setData(List<Object> data) {
         this.data = data;
     }
 }

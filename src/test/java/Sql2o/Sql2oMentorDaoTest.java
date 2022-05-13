@@ -42,6 +42,25 @@ public class Sql2oMentorDaoTest {
         assertEquals(expected,sql2oMentorDao.getAll().size());
     }
 
+    @Test
+    public void deleteById_DeletesCorrectMentor_true() {
+        Mentor mentor = new Mentor("samuel","test@email.com","java");
+        sql2oMentorDao.add(mentor);
+        sql2oMentorDao.deleteById(mentor.getId());
+        assertEquals(0, sql2oMentorDao.getAll().size());
+    }
+
+    @Test
+    public void update_updatesMentorDetails_true() {
+        Mentor mentor = new Mentor("samuel","test@email.com","java");
+        sql2oMentorDao.add(mentor);
+        mentor.setName("+samuel");
+        sql2oMentorDao.update(mentor.getId(),mentor );
+        Mentor updatedMentor = sql2oMentorDao.findById(mentor.getId());
+        assertNotEquals("samuel", updatedMentor.getName());
+    }
+
+
 
 
 

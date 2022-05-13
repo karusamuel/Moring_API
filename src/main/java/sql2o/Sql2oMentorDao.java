@@ -42,19 +42,40 @@ public class Sql2oMentorDao implements MentorDao {
         try (Connection conn = sql2o.open()) {
            return conn.createQuery(query)
                     .executeAndFetch(Mentor.class);
-
-
         }
     }
 
     @Override
-    public void update(int id, AssistantTM assistantTM) {
+    public Mentor findById(int id) {
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM mentors WHERE id = :id")
+                    .addParameter("id", id) //key/value pair, key must match above
+                    .executeAndFetchFirst(Mentor.class); //fetch an individual item
+        }
+    }
 
+    @Override
+    public void update(int id, Mentor mentor) {
+        String query = "UPDATE mentors SET name = :name WHERE id=:id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(query)
+                    .bind(mentor)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void deleteById(int id) {
-
+        String query = "DELETE from mentors WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(query)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
 

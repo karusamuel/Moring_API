@@ -10,8 +10,11 @@ public interface AssistantTMDao {
 
     List<AssistantTM> getAll();
 
+    AssistantTM findById(int id);
+
+
     void update(int id,AssistantTM assistantTM);
 
-    void delete(int id);
+    void deleteById(int id);
 
 }
